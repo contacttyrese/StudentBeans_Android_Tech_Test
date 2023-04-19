@@ -6,30 +6,34 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sbtechincaltest.model.Photo
 import com.example.sbtechincaltest.model.PhotoInteractor
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
 
-class PhotoViewModel : ViewModel() {
-    private val interactor = PhotoInteractor()
-    private val userActionSubject = PublishSubject.create<PhotoUserAction>()
+@HiltViewModel
+class PhotoViewModel @Inject constructor(
+    private val interactor: PhotoInteractor,
+    private val userActionSubject: PublishSubject<PhotoUserAction>,
+    private val viewStateSubject: BehaviorSubject<PhotoViewState>,
+    private val _viewState: MutableLiveData<PhotoViewState>,
+    private var _photosMutableLiveData: MutableLiveData<ArrayList<Photo>>,
+    private var _jsonPhotos: ArrayList<Photo>,
+    private val disposables: CompositeDisposable
+) : ViewModel() {
     val userActionObservable: Observable<PhotoUserAction>
         get() = userActionSubject
-    private val viewStateSubject = BehaviorSubject.create<PhotoViewState>()
     val viewStateObservable: Observable<PhotoViewState>
         get() = viewStateSubject
-    private val _viewState = MutableLiveData<PhotoViewState>()
     val viewState: LiveData<PhotoViewState>
         get() = _viewState
-    private var _photosMutableLiveData = MutableLiveData<ArrayList<Photo>>()
     val photosLiveData: LiveData<ArrayList<Photo>>
         get() = _photosMutableLiveData
-    private var _jsonPhotos = ArrayList<Photo>()
     val jsonPhotos
         get() = _jsonPhotos
-    private val disposables = CompositeDisposable()
 
     init {
         disposables.add(

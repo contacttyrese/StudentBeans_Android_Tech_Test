@@ -4,8 +4,9 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class PhotoInteractor {
-    private val repository = PhotoRepository()
+class PhotoInteractor constructor(
+    private val repository: PhotoRepository
+) {
 
     fun getPhotosObservable(): Observable<ArrayList<Photo>> {
         return repository.fetchPhotosByAlbumId(1)

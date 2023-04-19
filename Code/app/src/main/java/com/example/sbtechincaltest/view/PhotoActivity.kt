@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +14,11 @@ import com.example.sbtechincaltest.model.Photo
 import com.example.sbtechincaltest.viewmodel.PhotoUserAction
 import com.example.sbtechincaltest.viewmodel.PhotoViewModel
 import com.example.sbtechincaltest.viewmodel.PhotoViewState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PhotoActivity : AppCompatActivity() {
-//    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: PhotoViewModel
+    private val viewModel: PhotoViewModel by viewModels()
 
     private lateinit var heading: TextView
     private lateinit var recyclerView: RecyclerView
@@ -33,7 +34,6 @@ class PhotoActivity : AppCompatActivity() {
 //        val view = binding.root
 //        setContentView(view)
         setContentView(R.layout.activity_photo)
-        viewModel = ViewModelProvider(this)[PhotoViewModel::class.java]
 
         actionBar?.setHomeButtonEnabled(true)
         actionBar?.setDisplayHomeAsUpEnabled(true)
@@ -97,7 +97,6 @@ class PhotoActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-//        viewModel.clearDisposables()
     }
 
 }

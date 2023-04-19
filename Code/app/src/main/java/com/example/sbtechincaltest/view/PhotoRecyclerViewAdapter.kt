@@ -29,10 +29,6 @@ class PhotoRecyclerViewAdapter(context: Context, private val photos: ArrayList<P
         return photos.size
     }
 
-//    fun updateViewHolder() {
-//        findRelativeAdapterPositionIn(this, )
-//    }
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private lateinit var imageView: ImageView
         private lateinit var textView: TextView
