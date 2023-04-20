@@ -3,15 +3,12 @@ package com.example.sbtechincaltest.view
 import android.os.Bundle
 import android.util.Log
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.sbtechincaltest.R
+import com.example.sbtechincaltest.databinding.ActivityPhotoBinding
 import com.example.sbtechincaltest.model.Photo
-import com.example.sbtechincaltest.viewmodel.PhotoUserAction
 import com.example.sbtechincaltest.viewmodel.PhotoViewModel
 import com.example.sbtechincaltest.viewmodel.PhotoViewState
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,62 +17,34 @@ import dagger.hilt.android.AndroidEntryPoint
 class PhotoActivity : AppCompatActivity() {
     private val viewModel: PhotoViewModel by viewModels()
 
-    private lateinit var heading: TextView
-    private lateinit var recyclerView: RecyclerView
-
-    private lateinit var _photos: ArrayList<Photo>
+    private lateinit var binding: ActivityPhotoBinding
+    private val _photos = ArrayList<Photo>()
     var photos = ArrayList<Photo>()
     get() = _photos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO binding investigation time consuming
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        val view = binding.root
-//        setContentView(view)
-        setContentView(R.layout.activity_photo)
+        binding = ActivityPhotoBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        actionBar?.setHomeButtonEnabled(true)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-
-        createViews()
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         configureRecycler()
         createObservation()
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.userActionSubjectOnNextWithPhotoUserAction(PhotoUserAction.Process)
-    }
-
-    private fun createViews() {
-        heading = findViewById(R.id.photosHeading)
-        recyclerView = findViewById(R.id.photosRecycler)
-    }
-
     private fun configureRecycler() {
-        _photos = viewModel.jsonPhotos
-        recyclerView.adapter = PhotoRecyclerViewAdapter(this, _photos)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.isNestedScrollingEnabled = true
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.setHasFixedSize(true)
-        recyclerView.setItemViewCacheSize(3)
-        recyclerView.findViewHolderForItemId(0)
+        binding.photosRecycler.adapter = PhotoRecyclerViewAdapter(_photos)
+        binding.photosRecycler.layoutManager = LinearLayoutManager(this)
+        binding.photosRecycler.isNestedScrollingEnabled = true
+        binding.photosRecycler.itemAnimator = DefaultItemAnimator()
+        binding.photosRecycler.setHasFixedSize(true)
+        binding.photosRecycler.setItemViewCacheSize(3)
+        binding.photosRecycler.findViewHolderForItemId(0)
     }
 
     private fun createObservation() {
-        viewModel.photosLiveData.observe(this) {
-            _photos.removeAll(_photos.toSet())
-            _photos.addAll(it)
-            recyclerView.adapter?.let {
-                it.notifyDataSetChanged()
-                Log.i("recycler_update_success", "sent notification of data change in recylcer")
-            } ?: kotlin.run {
-                Log.e("recycler_update_fail", "recycler was null so notification not sent")
-            }
-        }
-
         viewModel.viewState.observe(this) { state ->
             when (state) {
                 PhotoViewState.Loading -> {
@@ -88,15 +57,18 @@ class PhotoActivity : AppCompatActivity() {
                 }
                 is PhotoViewState.PhotoLoaded -> {
                     ProgressBar.GONE
+                    _photos.removeAll(_photos.toSet())
+                    _photos.addAll(state.photos)
+                    binding.photosRecycler.adapter?.let {
+                        it.notifyDataSetChanged()
+                        Log.i("recycler_update_success", "sent notification of data change in recylcer")
+                    } ?: kotlin.run {
+                        Log.e("recycler_update_fail", "recycler was null so notification not sent")
+                    }
                     Log.i("activity_photo_loaded", "photos loaded")
                 }
             }
         }
 
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
 }

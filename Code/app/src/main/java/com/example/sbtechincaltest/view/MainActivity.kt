@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.sbtechincaltest.databinding.ActivityMainBinding
 import com.example.sbtechincaltest.viewmodel.MainViewModel
 

@@ -1,25 +1,41 @@
 package com.example.sbtechincaltest.model
 
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
 import org.junit.Assert.*
+import org.junit.Before
 
 import org.junit.Test
 
 class PhotoInteractorTest {
-    private val interactor = PhotoInteractor()
+    private val repository = mockk<PhotoRepository>()
+    private val observable = mockk<Observable<List<Photo>>>()
+    private val scheduler = mockk<Scheduler>()
+    private val interactor = PhotoInteractor(repository)
+
+    @Before
+    fun setUp() {
+        mockkStatic(Schedulers::class)
+        RxJavaPlugins.setInitIoSchedulerHandler { scheduler -> Schedulers.trampoline() }
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> Schedulers.trampoline()}
+    }
 
     @Test
     fun `GIVEN getPhotosObservable THEN return Observable with photos`() {
-        lateinit var photo: Photo
-        var sizeOfPhotos = 0
+        every { repository.fetchPhotosByAlbumId(any()) }.returns(observable)
+        every { observable.subscribeOn(any()) }.returns(observable)
+        every { observable.observeOn(any()) }.returns(observable)
+        every { Schedulers.trampoline() }.returns(scheduler)
 
-        var disposable = interactor.getPhotosObservable().
-                subscribe { photos ->
-                    photo = photos[0]
-                    sizeOfPhotos = photos.size
-                }
+        val actual = interactor.getPhotosObservable()
 
-        assertNotNull("first photo was null", photo)
-        assertTrue("size of photos is 0", sizeOfPhotos > 0)
-        assertTrue("disposable was not disposed", disposable.isDisposed)
+        assertNotNull("observable was null", actual)
+        assertEquals(observable, actual)
     }
 }

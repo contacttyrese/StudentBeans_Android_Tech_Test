@@ -14,14 +14,23 @@
     <list default="true" id="cbfe00e1-8cd9-4344-b1ac-bc708d673b56" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/di/AppModule.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/model/PhotoInteractor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/model/PhotoInteractor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/model/PhotoListService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/model/PhotoListService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/model/PhotoRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/model/PhotoRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/view/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/view/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/view/PhotoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/view/PhotoActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/view/PhotoRecyclerViewAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/viewmodel/PhotoUserAction.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/viewmodel/PhotoViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/viewmodel/PhotoViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_photo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_photo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/viewmodel/PhotoViewState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/sbtechincaltest/viewmodel/PhotoViewState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/ExampleUnitTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/model/PhotoInteractorTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/model/PhotoInteractorTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/model/PhotoListRetroFitTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/model/PhotoRepositoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/model/PhotoRepositoryTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/model/PhotoTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/model/PhotoTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/viewmodel/PhotoViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/sbtechincaltest/viewmodel/PhotoViewModelTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +46,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -143,6 +155,9 @@
       <recent name="com.example.sbtechincaltest.viewmodel" />
       <recent name="com.example.sbtechincaltest.model" />
     </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.example.sbtechincaltest.view" />
+    </key>
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -211,7 +226,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PhotoListRetroFitTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="PhotoInteractorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -224,7 +239,53 @@
           <list>
             <option value=":app:testDebugUnitTest" />
             <option value="--tests" />
-            <option value="&quot;com.example.sbtechincaltest.model.PhotoListRetroFitTest&quot;" />
+            <option value="&quot;com.example.sbtechincaltest.model.PhotoInteractorTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PhotoInteractorTest.GIVEN getPhotosObservable THEN return Observable with photos (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;com.example.sbtechincaltest.model.PhotoInteractorTest.GIVEN getPhotosObservable THEN return Observable with photos&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PhotoListRetroFitTest.GIVEN create service THEN return photo list service (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;com.example.sbtechincaltest.model.PhotoListRetroFitTest.GIVEN create service THEN return photo list service&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -257,7 +318,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="PhotoViewModelTest.getPhotosLiveData" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'com.example.sbtechincaltest'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -270,30 +331,7 @@
           <list>
             <option value=":app:testDebugUnitTest" />
             <option value="--tests" />
-            <option value="&quot;com.example.sbtechincaltest.viewmodel.PhotoViewModelTest.getPhotosLiveData&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="PhotoViewModelTest.getsomething" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":app:testDebugUnitTest" />
-            <option value="--tests" />
-            <option value="&quot;com.example.sbtechincaltest.viewmodel.PhotoViewModelTest.getsomething&quot;" />
+            <option value="&quot;com.example.sbtechincaltest.*&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -305,10 +343,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PhotoViewModelTest.getsomething" />
-        <item itemvalue="Gradle.PhotoViewModelTest.getPhotosLiveData" />
+        <item itemvalue="Gradle.Tests in 'com.example.sbtechincaltest'" />
+        <item itemvalue="Gradle.PhotoListRetroFitTest.GIVEN create service THEN return photo list service (1)" />
+        <item itemvalue="Gradle.PhotoInteractorTest.GIVEN getPhotosObservable THEN return Observable with photos (1)" />
+        <item itemvalue="Gradle.PhotoInteractorTest" />
         <item itemvalue="Gradle.PhotoRepositoryTest" />
-        <item itemvalue="Gradle.PhotoListRetroFitTest" />
       </list>
     </recent_temporary>
   </component>

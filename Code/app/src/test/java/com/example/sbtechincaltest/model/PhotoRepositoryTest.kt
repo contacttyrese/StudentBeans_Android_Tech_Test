@@ -1,44 +1,40 @@
 package com.example.sbtechincaltest.model
 
+import io.mockk.every
+import io.mockk.mockk
+import io.reactivex.Observable
 import org.junit.Assert.*
+import org.junit.Before
 
 import org.junit.Test
 
 class PhotoRepositoryTest {
-    private val repository = PhotoRepository()
+    private val service = mockk<PhotoListService>()
+    private val observable = mockk<Observable<List<Photo>>>()
+    private val repository = PhotoRepository(service)
+
+    @Before
+    fun setUp() {
+        every { service.getPhotos() }.returns(observable)
+        every { service.getPhotosByAlbumId(any()) }.returns(observable)
+    }
 
     @Test
     fun `GIVEN fetchPhotos THEN return Observable with photos`() {
-        lateinit var photo: Photo
-        var sizeOfPhotos = 0
-
-        var disposable = repository.fetchPhotos()
-            .subscribe{ photos ->
-                photo = photos[0]
-                sizeOfPhotos = photos.size
-            }
-        disposable.dispose()
-
-        assertNotNull("first photo was null", photo)
-        assertTrue("size of photos is 0", sizeOfPhotos > 0)
-        assertTrue("disposable was not disposed", disposable.isDisposed)
+        val actual = repository.fetchPhotos()
+        assertEquals(observable, actual)
     }
 
     @Test
     fun `GIVEN fetchPhotosByAlbumId THEN return Observable with photos`() {
-        lateinit var photo: Photo
-        var sizeOfPhotos = 0
+        val actual = repository.fetchPhotosByAlbumId(1)
+        assertEquals(observable, actual)
+    }
 
-        val albumId = 4
-        var disposable = repository.fetchPhotosByAlbumId(albumId)
-            .subscribe { photos ->
-                photo = photos[0]
-                sizeOfPhotos = photos.size
-            }
-        disposable.dispose()
-
-        assertNotNull("first photo was null", photo)
-        assertTrue("size of photos is 0", sizeOfPhotos > 0)
-        assertTrue("disposable was not disposed", disposable.isDisposed)
+    @Test
+    fun `GIVEN fetchPhotosByAlbumId with id less than 0 THEN return Exception`() {
+        assertThrows(Exception::class.java) {
+            repository.fetchPhotosByAlbumId(-1)
+        }
     }
 }

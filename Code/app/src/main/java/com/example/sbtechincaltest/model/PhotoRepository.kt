@@ -1,15 +1,20 @@
 package com.example.sbtechincaltest.model
 
 import io.reactivex.Observable
+import javax.inject.Inject
 
-class PhotoRepository constructor(
+class PhotoRepository @Inject constructor(
     private val service: PhotoListService
 ) {
-    fun fetchPhotos(): Observable<ArrayList<Photo>> {
-        return service.getPhotos() as Observable<ArrayList<Photo>>
+    fun fetchPhotos(): Observable<List<Photo>> {
+        return service.getPhotos()
     }
 
-    fun fetchPhotosByAlbumId(albumId: Int): Observable<ArrayList<Photo>> {
-        return service.getPhotosByAlbumId(albumId) as Observable<ArrayList<Photo>>
+    fun fetchPhotosByAlbumId(albumId: Int): Observable<List<Photo>> {
+        return if (albumId < 0) {
+            throw Exception("album id is less than one")
+        } else {
+            service.getPhotosByAlbumId(albumId)
+        }
     }
 }

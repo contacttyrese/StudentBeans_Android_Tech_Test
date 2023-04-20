@@ -1,37 +1,38 @@
 package com.example.sbtechincaltest.viewmodel
 
+import androidx.lifecycle.LiveData
 import com.example.sbtechincaltest.model.Photo
+import com.example.sbtechincaltest.model.PhotoInteractor
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.spyk
+import io.reactivex.disposables.CompositeDisposable
 import org.junit.Assert.*
 
 import org.junit.Test
 
 class PhotoViewModelTest {
-    private val viewModel = PhotoViewModel()
-
-    @Test
-    fun `GIVEN getViewStateObservable THEN return observable`() {
-        assertNotNull(viewModel.viewStateObservable)
-    }
+    private val interactor = mockk<PhotoInteractor>()
+    private val disposables = mockk<CompositeDisposable>()
+    private val viewState = mockk<LiveData<PhotoViewState>>()
+    private val photosLiveData = mockk<LiveData<List<Photo>>>()
+    private val viewModel = spyk(PhotoViewModel(interactor, disposables))
 
     @Test
     fun `GIVEN getViewState THEN return live data`() {
+        every { viewModel.viewState }.returns(viewState)
+        val actual = viewModel.viewState
+
         assertNotNull(viewModel.viewState)
+        assertEquals(viewState, actual)
     }
 
     @Test
     fun `GIVEN getPhotosLiveData THEN return live data`() {
+        every { viewModel.photosLiveData }.returns(photosLiveData)
+        val actual = viewModel.photosLiveData
+
         assertNotNull(viewModel.photosLiveData)
+        assertEquals(viewState, actual)
     }
-
-    @Test
-    fun `GIVEN add photo to photos THEN verify size`() {
-        val photo = Photo(1, 1, "a","a","a")
-
-        viewModel.jsonPhotos.add(photo)
-
-        assertNotNull(viewModel.jsonPhotos)
-        assertEquals(1, viewModel.jsonPhotos.size)
-
-    }
-
 }
